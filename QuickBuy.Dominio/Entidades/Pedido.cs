@@ -10,6 +10,7 @@ namespace QuickBuy.Dominio.Entidades
         public int Id { get; set; }
         public DateTime DataPedido { get; set; }
         public int UsuarioId { get; set; }
+        public virtual Usuario Usuario { get; set; }
         public DateTime DataPrevistaEntrega { get; set; }
         public string CEP { get; set; }
         public string Estado { get; set; }
@@ -17,7 +18,7 @@ namespace QuickBuy.Dominio.Entidades
         public string EnderecoCompleto { get; set; }
         public int NumeroEndereco { get; set; }
 
-        public int FormaPagementoId { get; set; }
+        public int FormaPagamentoId { get; set; }
         public FormaPagamento FormaPagamento { get; set; }
 
         /// <summary>
@@ -30,8 +31,12 @@ namespace QuickBuy.Dominio.Entidades
             LimparMensagensValidacao();
             if (!ItensPedido.Any())
                 AdicionarCritica("Crítica: O pedido deve conter pelo menos um item.");
+
             if (string.IsNullOrEmpty(CEP))
                 AdicionarCritica("Crítica: CEP deve estar preenchido.");
+
+            if (FormaPagamentoId == 0)
+                AdicionarCritica("Crítica: Não foi informada a forma de pagamento.");
         }
     }
 }
