@@ -9,6 +9,7 @@ namespace QuickBuy.Repositorio.Repositorios
         {
 
         }
+        //Teste
         public void Adicionar(TEntity entity)
         {
             throw new System.NotImplementedException();
